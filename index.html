@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAREFAS</title>
+    <style>
+       
+        h1{
+            margin: 10px 10px 10px 10px;
+            padding: 10px 10px 10px 10px;
+            font-family: Arial, Helvetica, sans-serif;    
+        }
+        .titulo {
+            justify-content: center;
+            text-align: center;
+        }
+        .inputsection {
+            background-color: aqua;
+            padding: 10px 10px 10px 10px;
+
+        }
+        body {
+            background: linear-gradient(20deg, rgba(100, 60, 250), rgba(150, 60, 150));
+            display: grid;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .maindiv {
+            background-color: bisque;
+            height: 80svh;
+        }
+        button {
+            background: linear-gradient(0deg, rgba(100,100,180), rgba(200, 200, 250));
+            border-radius: 5px;
+            border-width: 1px;
+            border-color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <nav></nav>
+    
+    <header class="titulo">
+        <h1>Clientes</h1>
+    </header>
+    
+    <main class="maindiv">
+        <section>   
+            <article>
+                <section>
+                    
+                </section>
+                <h2 style="padding: 10px 10px 10px 10px">Adicionar cliente</h2>
+                <section style="display: inline;" class="inputsection">
+                    
+                    <label for="cliente">
+                        <input type="text" name="cliente" id="cliente" placeholder="nome cliente">
+                        <input type="email" name="cliente_email" id="cliente_email" placeholder="cliente@empresa.com">
+
+                        <button onclick="cliente_novo()">Adicionar</button>
+                        
+                        <button onclick="listar_clientes()">Listar</button>
+
+                    </label>
+                </section>
+                
+                <section id="tabela" style="display: grid;background-color: aqua;">
+                    <table>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Email</th>
+                        </tr>
+                        <tr id="tabela_cliente">
+
+                        </tr>
+                         
+                    </table>
+                </section>
+
+            </article>     
+        </section>
+
+    </main>
+    <script src="fetch_api_crud.js">
+
+    </script>
+
+</body>
+</html>
