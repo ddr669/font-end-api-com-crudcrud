@@ -6,7 +6,7 @@ function cliente_novo(){
         return -1
     }
     console.log(nome,email);
-    fetch("https://crudcrud.com/api/{token-crud-crud}/clients", 
+    fetch("https://crudcrud.com/api/c80eec3a09f040e5bea3f0373b9daca1/clients", 
         {method: "POST", headers: {'Content-Type':'application/json'},body: JSON.stringify({name: `${nome}`, email: `${email}`})
         }).then(response => {return response})
         .then(data => console.log(data))
@@ -14,26 +14,31 @@ function cliente_novo(){
 
 };
 function remover(id_cliente){
-    const objeto_a_excluir = document.getElementById(id_cliente);
-    console.log(document.getElementById(id_cliente));
-    fetch(`https://crudcrud.com/api/{token-crud-crud}/clientes/${id_cliente}`, 
-        {method: "DELETE", headers: {'Content-Type':'application/json'},body: JSON.stringify({name: `${nome}`, email: `${email}`})
-        }).then(response => {return response})
+    
+    console.log(id_cliente);
+    const url_ = "https://crudcrud.com/api/c80eec3a09f040e5bea3f0373b9daca1/clients/"+`${id_cliente}`
+    fetch(url_, 
+        {method: "DELETE"})
+        .then(response => {return response})
         .then(data => console.log(data))
         .catch(err => console.log(err))
 };
 
 function listar_clientes(){
-    fetch("https://crudcrud.com/api/{token-crud-crud}/clientes", {
+    
+    fetch("https://crudcrud.com/api/c80eec3a09f040e5bea3f0373b9daca1/clients", {
         method: "GET",
         headers: {'Content-Type':'application/json'}
     }).then(
-        (lista) => {return lista.json().then((data)=>{console.log(data);return data;})}
+        (lista) => {return lista.json().then((data)=>{return data;})}
         ).then(
         data => {
             
             for(a=0;a<data.length;++a){
-            document.getElementById("tabela_cliente").innerHTML =  `<tr id="${data[a]['_id']}"><td>nome: ${data[a]['name']}</td><td>email: ${data[a]['email']}</td><button name="clientes" onclick="remover(${data[a]['_id']})">X</button></tr>`
+                console.log(data[a])
+                const new_text = `<tr><td>nome: ${data[a]['name']}</td><td>email: ${data[a]['email']}</td><button name="clientes" onclick="remover('${data[a]['_id']}')">X</button></tr>`
+                const elemento = document.getElementById("tabela_cliente")
+                elemento.insertAdjacentHTML('beforeend', new_text)
         }
     }
         ).catch(
@@ -45,11 +50,11 @@ function listar_clientes(){
     // document.getElementById("tabela").innerHTML;
 };
 
-document.addEventListener('click', function(event) {
-        const clickedElement = event.target;
-        if (clickedElement.name === "clientes"){
-            console.log("excluido cliente")
-            console.log(clickedElement._id)
-        }
+//document.addEventListener('click', function(event) {
+//        const clickedElement = event.target;
+//        if (clickedElement.name === "clientes"){
+//            console.log("excluido cliente")
+           
+//        }
         //console.log("The clicked element is:", clickedElement);
-});
+//});
